@@ -1,0 +1,71 @@
+<!-- Reward Reveal Section -->
+<div class="section">
+    <h2>🎉 Reward Reveal Component</h2>
+
+    <p class="section-description">
+        A universal reward reveal flow for quest rewards, daily rewards, achievement rewards,
+        battle pass rewards, level-up rewards, or chest-style reveals. It displays rewards provided
+        by your game logic and does not generate random drops.
+    </p>
+
+    <div class="theme-selector">
+        <button class="theme-button active" data-theme="default" data-target="reward-reveal">Default</button>
+        <button class="theme-button" data-theme="dark" data-target="reward-reveal">Dark</button>
+        <button class="theme-button" data-theme="neon" data-target="reward-reveal">Neon</button>
+        <button class="theme-button" data-theme="forest" data-target="reward-reveal">Forest</button>
+        <button class="theme-button" data-theme="sunset" data-target="reward-reveal">Sunset</button>
+        <button class="theme-button" data-theme="ocean" data-target="reward-reveal">Ocean</button>
+    </div>
+
+    <div class="demo-controls">
+        <button class="demo-button active" id="openRewardRevealSequence">Open sequence reveal</button>
+        <button class="demo-button" id="openRewardRevealAll">Open all rewards</button>
+        <button class="demo-button" id="resetRewardReveal">Reset</button>
+    </div>
+
+    <div class="reward-reveal-demo-layout">
+        <gwc-reward-reveal
+                id="rewardRevealDemo"
+                theme="default"
+                title="Quest rewards"
+                subtitle="Open to reveal the rewards received from your game logic."
+                variant="chest"
+                mode="sequence"
+                show-close="false"
+                show-reset="true"
+                open-label="Open rewards"
+                next-label="Reveal next"
+                reset-label="Try again">
+        </gwc-reward-reveal>
+
+        <div class="demo-event-log" id="rewardRevealEventLog">
+            Event log will appear here.
+        </div>
+    </div>
+
+    <div class="code-block">
+        // Usage in TypeScript<br>
+        import { GwcRewardReveal, RewardConfig } from 'gwc';<br>
+        <br>
+        const reveal = document.querySelector('gwc-reward-reveal');<br>
+        <br>
+        const rewards: RewardConfig[] = [<br>
+        &nbsp;&nbsp;{ id: 'coins', name: '500 Coins', icon: '🪙', type: 'coins', amount: 500, rarity: 'common', state: 'claimable' },<br>
+        &nbsp;&nbsp;{ id: 'sword', name: 'Rare Sword', icon: '⚔️', type: 'item', amount: 1, rarity: 'epic', state: 'claimable' }<br>
+        ];<br>
+        <br>
+        reveal?.setRewards(rewards);<br>
+        reveal?.open();<br>
+        <br>
+        reveal?.addEventListener('gwc-reward-reveal-complete', event =&gt; {<br>
+        });<br>
+        <br>
+        // Usage in HTML<br>
+        &lt;gwc-reward-reveal<br>
+        &nbsp;&nbsp;theme="dark"<br>
+        &nbsp;&nbsp;title="Quest rewards"<br>
+        &nbsp;&nbsp;variant="chest"<br>
+        &nbsp;&nbsp;mode="sequence"&gt;<br>
+        &lt;/gwc-reward-reveal&gt;
+    </div>
+</div>

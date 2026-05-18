@@ -1,0 +1,62 @@
+<!-- Stat Card Section -->
+<div class="section">
+    <h2>📈 Stat Card Component</h2>
+
+    <p class="section-description">
+        Compact game stat cards for player profiles, match results, character stats, currencies and leaderboard details.
+    </p>
+
+    <div class="theme-selector">
+        <button class="theme-button active" data-theme="default" data-target="stat-card">Default</button>
+        <button class="theme-button" data-theme="dark" data-target="stat-card">Dark</button>
+        <button class="theme-button" data-theme="neon" data-target="stat-card">Neon</button>
+        <button class="theme-button" data-theme="forest" data-target="stat-card">Forest</button>
+        <button class="theme-button" data-theme="sunset" data-target="stat-card">Sunset</button>
+        <button class="theme-button" data-theme="ocean" data-target="stat-card">Ocean</button>
+    </div>
+
+    <div class="stat-card-demo-layout">
+        <div class="stat-card-grid" id="statCardsContainer"></div>
+
+        <gwc-inspector-panel
+                id="statCardInspector"
+                variant="dark"
+                empty-text="Click a stat card to inspect its event details.">
+        </gwc-inspector-panel>
+    </div>
+
+    <div class="code-block">
+        // Usage in TypeScript<br>
+        import { GwcStatCard, StatCardConfig } from 'gwc';<br>
+        <br>
+        const statCard = document.querySelector('gwc-stat-card');<br>
+        <br>
+        const config: StatCardConfig = {<br>
+        &nbsp;&nbsp;id: 'power',<br>
+        &nbsp;&nbsp;label: 'Power',<br>
+        &nbsp;&nbsp;value: 540,<br>
+        &nbsp;&nbsp;icon: '⚔️',<br>
+        &nbsp;&nbsp;description: 'Combined combat power.',<br>
+        &nbsp;&nbsp;delta: '+25',<br>
+        &nbsp;&nbsp;deltaLabel: 'gear bonus',<br>
+        &nbsp;&nbsp;tone: 'danger',<br>
+        &nbsp;&nbsp;variant: 'card'<br>
+        };<br>
+        <br>
+        statCard?.setConfig(config);<br>
+        <br>
+        statCard?.addEventListener('gwc-stat-card-click', event =&gt; {<br>
+        });<br>
+        <br>
+        // Usage in HTML<br>
+        &lt;gwc-stat-card<br>
+        &nbsp;&nbsp;theme="dark"<br>
+        &nbsp;&nbsp;label="Power"<br>
+        &nbsp;&nbsp;value="540"<br>
+        &nbsp;&nbsp;icon="⚔️"<br>
+        &nbsp;&nbsp;delta="+25"<br>
+        &nbsp;&nbsp;tone="danger"<br>
+        &nbsp;&nbsp;variant="card"&gt;<br>
+        &lt;/gwc-stat-card&gt;
+    </div>
+</div>

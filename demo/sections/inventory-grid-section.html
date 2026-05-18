@@ -1,0 +1,80 @@
+<!-- Inventory Grid Section -->
+<div class="section">
+    <h2>🧰 Inventory Grid Component</h2>
+
+    <p class="section-description">
+        A full inventory board built from inventory slots. It handles layout, capacity, filters,
+        selection and event forwarding, while your game owns item logic.
+    </p>
+
+    <div class="theme-selector">
+        <button class="theme-button active" data-theme="default" data-target="inventory-grid">Default</button>
+        <button class="theme-button" data-theme="dark" data-target="inventory-grid">Dark</button>
+        <button class="theme-button" data-theme="neon" data-target="inventory-grid">Neon</button>
+        <button class="theme-button" data-theme="forest" data-target="inventory-grid">Forest</button>
+        <button class="theme-button" data-theme="sunset" data-target="inventory-grid">Sunset</button>
+        <button class="theme-button" data-theme="ocean" data-target="inventory-grid">Ocean</button>
+    </div>
+
+    <div class="inventory-grid-demo-layout">
+        <gwc-inventory-grid
+                id="inventoryGridDemo"
+                theme="default"
+                title="Inventory"
+                subtitle="Click a cell to inspect it. Selected items expose their action."
+                capacity="18"
+                columns="6"
+                filter="all"
+                variant="board"
+                show-filters="true"
+                show-capacity="true"
+                show-empty-slots="true"
+                show-actions="selected"
+                show-names="false"
+                empty-text="Empty slot">
+        </gwc-inventory-grid>
+
+        <gwc-inspector-panel
+                id="inventoryGridInspector"
+                variant="dark"
+                empty-text="Click an inventory cell to inspect item details.">
+        </gwc-inspector-panel>
+    </div>
+
+    <div class="code-block">
+        // Usage in TypeScript<br>
+        import { GwcInventoryGrid, InventorySlotConfig } from 'gwc';<br>
+        <br>
+        const inventory = document.querySelector('gwc-inventory-grid');<br>
+        <br>
+        const slots: InventorySlotConfig[] = [<br>
+        &nbsp;&nbsp;{<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;slotId: 'weapon-1',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;state: 'filled',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;action: 'equip',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;item: { name: 'Rare Sword', icon: '⚔️', type: 'weapon', rarity: 'rare' }<br>
+        &nbsp;&nbsp;}<br>
+        ];<br>
+        <br>
+        inventory?.setConfig({<br>
+        &nbsp;&nbsp;title: 'Inventory',<br>
+        &nbsp;&nbsp;capacity: 24,<br>
+        &nbsp;&nbsp;columns: 6,<br>
+        &nbsp;&nbsp;slots<br>
+        });<br>
+        <br>
+        inventory?.addEventListener('gwc-inventory-grid-slot-click', event =&gt; {<br>
+        });<br>
+        <br>
+        // Usage in HTML<br>
+        &lt;gwc-inventory-grid<br>
+        &nbsp;&nbsp;theme="dark"<br>
+        &nbsp;&nbsp;title="Inventory"<br>
+        &nbsp;&nbsp;capacity="24"<br>
+        &nbsp;&nbsp;columns="6"<br>
+        &nbsp;&nbsp;show-filters="true"<br>
+        &nbsp;&nbsp;show-empty-slots="true"<br>
+        &nbsp;&nbsp;show-actions="selected"&gt;<br>
+        &lt;/gwc-inventory-grid&gt;
+    </div>
+</div>

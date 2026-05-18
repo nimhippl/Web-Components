@@ -1,0 +1,77 @@
+<!-- Quest List Section -->
+<div class="section">
+    <h2>📜 Quest List Component</h2>
+
+    <p class="section-description">
+        Quest lists for daily tasks, weekly missions, achievements, battle pass objectives and reward claim flows.
+    </p>
+
+    <div class="theme-selector">
+        <button class="theme-button active" data-theme="default" data-target="quest-list">Default</button>
+        <button class="theme-button" data-theme="dark" data-target="quest-list">Dark</button>
+        <button class="theme-button" data-theme="neon" data-target="quest-list">Neon</button>
+        <button class="theme-button" data-theme="forest" data-target="quest-list">Forest</button>
+        <button class="theme-button" data-theme="sunset" data-target="quest-list">Sunset</button>
+        <button class="theme-button" data-theme="ocean" data-target="quest-list">Ocean</button>
+    </div>
+
+    <div class="quest-list-demo-layout">
+        <gwc-quest-list
+                id="questListDemo"
+                theme="default"
+                title="Quest board"
+                subtitle="Filter quests, inspect details, and claim ready rewards."
+                variant="card"
+                filter="all"
+                show-filters="true"
+                show-progress="true"
+                show-rewards="true"
+                show-claim-button="true"
+                claim-label="Claim reward">
+        </gwc-quest-list>
+
+        <gwc-inspector-panel
+                id="questListInspector"
+                variant="dark"
+                empty-text="Click a quest or claim button to inspect event details.">
+        </gwc-inspector-panel>
+    </div>
+
+    <div class="code-block">
+        // Usage in TypeScript<br>
+        import { GwcQuestList, QuestConfig } from 'gwc';<br>
+        <br>
+        const questList = document.querySelector('gwc-quest-list');<br>
+        <br>
+        const quests: QuestConfig[] = [<br>
+        &nbsp;&nbsp;{<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;id: 'daily-crystals',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;title: 'Collect crystals',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;description: 'Collect 5 crystals in the forest zone.',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;icon: '💎',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;category: 'Daily',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;difficulty: 'normal',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;state: 'active',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;progress: { value: 4, max: 5, label: 'Crystals', suffix: 'items' },<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;rewards: [<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ name: 'Coins', icon: '🪙', amount: 300, rarity: 'common', type: 'coins' }<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;]<br>
+        &nbsp;&nbsp;}<br>
+        ];<br>
+        <br>
+        questList?.setQuests(quests);<br>
+        <br>
+        questList?.addEventListener('gwc-quest-claim', event =&gt; {<br>
+        });<br>
+        <br>
+        // Usage in HTML<br>
+        &lt;gwc-quest-list<br>
+        &nbsp;&nbsp;theme="dark"<br>
+        &nbsp;&nbsp;title="Quest board"<br>
+        &nbsp;&nbsp;filter="all"<br>
+        &nbsp;&nbsp;show-filters="true"<br>
+        &nbsp;&nbsp;show-progress="true"<br>
+        &nbsp;&nbsp;show-rewards="true"&gt;<br>
+        &lt;/gwc-quest-list&gt;
+    </div>
+</div>

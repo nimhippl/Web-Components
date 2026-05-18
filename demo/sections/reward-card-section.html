@@ -1,0 +1,40 @@
+<div class="section">
+    <h2>🎁 Reward Card Component</h2>
+
+    <div class="theme-selector">
+        <button class="theme-button active" data-theme="default" data-target="reward-card">Default</button>
+        <button class="theme-button" data-theme="dark" data-target="reward-card">Dark</button>
+        <button class="theme-button" data-theme="neon" data-target="reward-card">Neon</button>
+        <button class="theme-button" data-theme="forest" data-target="reward-card">Forest</button>
+        <button class="theme-button" data-theme="sunset" data-target="reward-card">Sunset</button>
+        <button class="theme-button" data-theme="ocean" data-target="reward-card">Ocean</button>
+    </div>
+
+    <div class="rewards-grid" id="rewardsContainer"></div>
+
+    <div class="code-block">
+        // Usage in TypeScript<br>
+        import { GwcRewardCard, RewardConfig } from 'gwc';<br>
+        <br>
+        const reward = document.querySelector('gwc-reward-card') as GwcRewardCard | null;<br>
+        <br>
+        const config: RewardConfig = {<br>
+        &nbsp;&nbsp;id: 'coins-100',<br>
+        &nbsp;&nbsp;name: '100 Coins',<br>
+        &nbsp;&nbsp;description: 'Currency reward for completing the objective.',<br>
+        &nbsp;&nbsp;icon: '🪙',<br>
+        &nbsp;&nbsp;type: 'coins',<br>
+        &nbsp;&nbsp;amount: 100,<br>
+        &nbsp;&nbsp;rarity: 'common',<br>
+        &nbsp;&nbsp;state: 'claimable'<br>
+        };<br>
+        <br>
+        reward?.setConfig(config);<br>
+        <br>
+        reward?.addEventListener('gwc-reward-claim', event =&gt; {<br>
+        &nbsp;&nbsp;config.state = 'claimed';<br>
+        &nbsp;&nbsp;config.claimedAt = new Date();<br>
+        &nbsp;&nbsp;reward.setConfig(config);<br>
+        });<br>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<!-- Player Card Section -->
+<div class="section">
+    <h2>🧙 Player Card Component</h2>
+
+    <p class="section-description">
+        Player cards for profiles, lobbies, match results, team lists and character selection screens.
+    </p>
+
+    <div class="theme-selector">
+        <button class="theme-button active" data-theme="default" data-target="player-card">Default</button>
+        <button class="theme-button" data-theme="dark" data-target="player-card">Dark</button>
+        <button class="theme-button" data-theme="neon" data-target="player-card">Neon</button>
+        <button class="theme-button" data-theme="forest" data-target="player-card">Forest</button>
+        <button class="theme-button" data-theme="sunset" data-target="player-card">Sunset</button>
+        <button class="theme-button" data-theme="ocean" data-target="player-card">Ocean</button>
+    </div>
+
+    <div class="player-status-help">
+        <div class="player-status-help-title">Player status dots</div>
+
+        <div class="player-status-legend">
+            <span class="player-status-legend-item">
+              <span class="player-status-legend-dot status-online"></span>
+              Online
+            </span>
+
+            <span class="player-status-legend-item">
+              <span class="player-status-legend-dot status-busy"></span>
+              Busy
+            </span>
+
+            <span class="player-status-legend-item">
+              <span class="player-status-legend-dot status-away"></span>
+              Away
+            </span>
+
+            <span class="player-status-legend-item">
+              <span class="player-status-legend-dot status-offline"></span>
+              Offline
+            </span>
+        </div>
+    </div>
+
+    <div class="player-card-demo-layout">
+        <div class="player-card-grid" id="playerCardsContainer"></div>
+
+        <gwc-inspector-panel
+                id="playerCardInspector"
+                variant="dark"
+                empty-text="Click a player card to inspect its event details.">
+        </gwc-inspector-panel>
+    </div>
+
+    <div class="code-block">
+        // Usage in TypeScript<br>
+        import { GwcPlayerCard, PlayerCardConfig } from 'gwc';<br>
+        <br>
+        const playerCard = document.querySelector('gwc-player-card');<br>
+        <br>
+        const config: PlayerCardConfig = {<br>
+        &nbsp;&nbsp;id: 'mystic-mage',<br>
+        &nbsp;&nbsp;name: 'MysticMage',<br>
+        &nbsp;&nbsp;title: 'Arcane damage dealer',<br>
+        &nbsp;&nbsp;level: 12,<br>
+        &nbsp;&nbsp;rank: 'Gold',<br>
+        &nbsp;&nbsp;score: '1,750 XP',<br>
+        &nbsp;&nbsp;status: 'online',<br>
+        &nbsp;&nbsp;isCurrentPlayer: true,<br>
+        &nbsp;&nbsp;stats: [<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;{ label: 'Power', value: 540, icon: '⚔️' },<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;{ label: 'Wins', value: 32, icon: '🏆' }<br>
+        &nbsp;&nbsp;],<br>
+        &nbsp;&nbsp;progress: { value: 1250, max: 2000, label: 'Next level', suffix: 'XP' }<br>
+        };<br>
+        <br>
+        playerCard?.setConfig(config);<br>
+        <br>
+        playerCard?.addEventListener('gwc-player-card-click', event =&gt; {<br>
+        });<br>
+        <br>
+        // Usage in HTML<br>
+        &lt;gwc-player-card<br>
+        &nbsp;&nbsp;theme="dark"<br>
+        &nbsp;&nbsp;name="MysticMage"<br>
+        &nbsp;&nbsp;title="Arcane damage dealer"<br>
+        &nbsp;&nbsp;level="12"<br>
+        &nbsp;&nbsp;rank="Gold"<br>
+        &nbsp;&nbsp;status="online"&gt;<br>
+        &lt;/gwc-player-card&gt;
+    </div>
+</div>

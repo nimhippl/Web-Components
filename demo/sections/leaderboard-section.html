@@ -1,0 +1,101 @@
+<div class="section">
+    <h2>🏆 Leaderboard Component</h2>
+
+    <div class="theme-selector">
+        <button class="theme-button active" data-theme="default" data-target="leaderboard">Default</button>
+        <button class="theme-button" data-theme="dark" data-target="leaderboard">Dark</button>
+        <button class="theme-button" data-theme="neon" data-target="leaderboard">Neon</button>
+        <button class="theme-button" data-theme="forest" data-target="leaderboard">Forest</button>
+        <button class="theme-button" data-theme="sunset" data-target="leaderboard">Sunset</button>
+        <button class="theme-button" data-theme="ocean" data-target="leaderboard">Ocean</button>
+    </div>
+
+    <div class="controls-stack">
+        <div class="control-group">
+            <div class="control-group-label">Demo actions</div>
+            <div class="demo-controls">
+                <button class="demo-button" id="addPlayer">Add Random Player</button>
+                <button class="demo-button" id="updateScores">Update Scores</button>
+                <button class="demo-button" id="resetLeaderboard">Reset</button>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="control-group-label">Layout</div>
+            <div class="demo-controls">
+                <button class="demo-button active" data-variant="card">Card View</button>
+                <button class="demo-button" data-variant="compact">Compact View</button>
+                <button class="demo-button" data-variant="minimal">Minimal View</button>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="control-group-header">
+                <div class="control-group-label">Rank mode</div>
+
+                <gwc-tooltip
+                        id="rankModeTooltip"
+                        tooltip-title="Ordinal rank"
+                        text="Same scores still get unique positions, using a stable tie-breaker. Example: 1, 2, 3."
+                        position="right">
+                    <button class="info-button" type="button" aria-label="Explain rank modes">i</button>
+                </gwc-tooltip>
+            </div>
+
+            <div class="demo-controls">
+                <button class="demo-button active" data-rank-mode="ordinal">Ordinal Rank</button>
+                <button class="demo-button" data-rank-mode="competition">Competition Rank</button>
+                <button class="demo-button" data-rank-mode="dense">Dense Rank</button>
+            </div>
+        </div>
+    </div>
+
+    <gwc-leaderboard
+            id="leaderboard1"
+            theme="default"
+            title="Top Players"
+            max-entries="10"
+            empty-text="No players yet"
+            score-suffix="XP"
+            score-label="Experience"
+            variant="card"
+            rank-mode="ordinal"
+            expand-on-click="true"
+            details-title="Player details">
+    </gwc-leaderboard>
+
+    <div class="code-block">
+        // Usage in TypeScript<br>
+        import { GwcLeaderboard } from 'gwc';<br>
+        <br>
+        const leaderboard = document.querySelector('gwc-leaderboard') as GwcLeaderboard | null;<br>
+        <br>
+        leaderboard?.setData([<br>
+        &nbsp;&nbsp;{<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;id: 1,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;name: 'Alice',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;score: 1250,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;previousRank: 3,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;avatar: 'url.jpg',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;details: [<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ label: 'Class', value: 'Mage' },<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ label: 'Level', value: 12 }<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;]<br>
+        &nbsp;&nbsp;},<br>
+        &nbsp;&nbsp;{ id: 2, name: 'Bob', score: 1250, previousRank: 1, isCurrentPlayer: true },<br>
+        &nbsp;&nbsp;{ id: 3, name: 'Kate', score: 900 }<br>
+        ]);<br>
+        <br>
+        // Usage in HTML<br>
+        &lt;gwc-leaderboard<br>
+        &nbsp;&nbsp;theme="dark"<br>
+        &nbsp;&nbsp;title="Top Players"<br>
+        &nbsp;&nbsp;max-entries="10"<br>
+        &nbsp;&nbsp;score-suffix="XP"<br>
+        &nbsp;&nbsp;variant="compact"<br>
+        &nbsp;&nbsp;rank-mode="ordinal"<br>
+        &nbsp;&nbsp;expand-on-click="true"<br>
+        &nbsp;&nbsp;details-title="Player details"&gt;<br>
+        &lt;/gwc-leaderboard&gt;
+    </div>
+</div>

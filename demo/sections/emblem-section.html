@@ -1,0 +1,116 @@
+<div class="section">
+    <h2>🛡️ Emblem Component</h2>
+
+    <p class="section-description">
+        Compact game emblems for roles, classes, factions, ranks, medals, and profile badges.
+        Use <code>gwc-tooltip</code> for names and descriptions.
+    </p>
+
+    <div class="emblem-rarity-help">
+        <div class="emblem-rarity-help-header">
+            <div class="emblem-rarity-help-title">Rarity colors</div>
+
+            <gwc-tooltip
+                    tooltip-title="Rarity colors"
+                    text="Rarity is shown as a small corner marker. Common is gray, rare is blue, epic is purple, and legendary is gold. Theme changes the main emblem color; rarity marks item importance."
+                    position="right">
+                <button class="info-button" type="button" aria-label="Explain rarity colors">i</button>
+            </gwc-tooltip>
+        </div>
+
+        <div class="emblem-rarity-legend">
+          <span class="emblem-rarity-legend-item">
+            <span class="rarity-dot rarity-common"></span>
+            Common
+          </span>
+
+            <span class="emblem-rarity-legend-item">
+            <span class="rarity-dot rarity-rare"></span>
+            Rare
+          </span>
+
+            <span class="emblem-rarity-legend-item">
+            <span class="rarity-dot rarity-epic"></span>
+            Epic
+          </span>
+
+            <span class="emblem-rarity-legend-item">
+            <span class="rarity-dot rarity-legendary"></span>
+            Legendary
+          </span>
+        </div>
+    </div>
+
+    <div class="theme-selector">
+        <button class="theme-button active" data-theme="default" data-target="emblem">Default</button>
+        <button class="theme-button" data-theme="dark" data-target="emblem">Dark</button>
+        <button class="theme-button" data-theme="neon" data-target="emblem">Neon</button>
+        <button class="theme-button" data-theme="forest" data-target="emblem">Forest</button>
+        <button class="theme-button" data-theme="sunset" data-target="emblem">Sunset</button>
+        <button class="theme-button" data-theme="ocean" data-target="emblem">Ocean</button>
+    </div>
+
+    <div class="emblem-demo-subsection">
+        <div class="emblem-demo-title">Emblem selection flow</div>
+        <div class="emblem-demo-description">
+            Click an emblem to simulate selecting a role, faction, rank, or profile medal.
+            The selected emblem is highlighted and its details are shown in the panel.
+        </div>
+
+        <div class="emblem-selection-flow">
+            <div class="emblem-selection-list" id="emblemSelectionContainer"></div>
+
+            <gwc-inspector-panel
+                    id="selectedEmblemPanel"
+                    variant="dark"
+                    empty-text="Click an emblem to see event details here.">
+            </gwc-inspector-panel>
+        </div>
+    </div>
+
+    <div class="emblem-demo-subsection">
+        <div class="emblem-demo-title">State variants</div>
+        <div class="emblem-demo-description">
+            Same shield shape, different states. This makes locked, claimable, claimed, hidden and unlocked behavior easy to compare.
+        </div>
+        <div class="emblems-demo-grid" id="emblemsContainer"></div>
+    </div>
+
+    <div class="emblem-demo-subsection">
+        <div class="emblem-demo-title">Shape variants</div>
+        <div class="emblem-demo-description">
+            Different shapes for roles, classes, factions, ranks and profile emblems.
+        </div>
+        <div class="emblems-demo-grid compact" id="emblemShapesContainer"></div>
+    </div>
+
+    <div class="code-block">
+        // Usage in TypeScript<br>
+        import { GwcEmblem, EmblemConfig } from 'gwc';<br>
+        <br>
+        const emblem = document.querySelector('gwc-emblem') as GwcEmblem | null;<br>
+        <br>
+        const config: EmblemConfig = {<br>
+        &nbsp;&nbsp;id: 'defender',<br>
+        &nbsp;&nbsp;name: 'Defender',<br>
+        &nbsp;&nbsp;description: 'Block 100 attacks.',<br>
+        &nbsp;&nbsp;icon: '🛡️',<br>
+        &nbsp;&nbsp;rarity: 'epic',<br>
+        &nbsp;&nbsp;state: 'unlocked'<br>
+        };<br>
+        <br>
+        emblem?.setConfig(config);<br>
+        <br>
+        emblem?.addEventListener('gwc-emblem-click', event =&gt; {<br>
+        });<br>
+        <br>
+        // Usage in HTML<br>
+        &lt;gwc-emblem<br>
+        &nbsp;&nbsp;theme="dark"<br>
+        &nbsp;&nbsp;size="medium"<br>
+        &nbsp;&nbsp;shape="shield"<br>
+        &nbsp;&nbsp;interactive="true"<br>
+        &nbsp;&nbsp;show-state="true"&gt;<br>
+        &lt;/gwc-emblem&gt;
+    </div>
+</div>

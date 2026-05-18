@@ -1,0 +1,92 @@
+<!-- Countdown Section -->
+<div class="section">
+    <h2>⏱️ Countdown Component</h2>
+
+    <p class="section-description">
+        Game countdowns for daily rewards, cooldowns, temporary boosts, crafting timers and seasonal events.
+    </p>
+
+    <div class="theme-selector">
+        <button class="theme-button active" data-theme="default" data-target="countdown">Default</button>
+        <button class="theme-button" data-theme="dark" data-target="countdown">Dark</button>
+        <button class="theme-button" data-theme="neon" data-target="countdown">Neon</button>
+        <button class="theme-button" data-theme="forest" data-target="countdown">Forest</button>
+        <button class="theme-button" data-theme="sunset" data-target="countdown">Sunset</button>
+        <button class="theme-button" data-theme="ocean" data-target="countdown">Ocean</button>
+    </div>
+
+    <div class="inventory-best-practice">
+        <div class="inventory-best-practice-title">Best practice</div>
+        <div class="inventory-best-practice-text">
+            <code>gwc-countdown</code> is UI only. Use server time for rewards, purchases and anti-cheat checks.
+            The component is useful for displaying time and reacting to UI events.
+        </div>
+    </div>
+
+    <div class="countdown-demo-layout">
+        <div class="countdown-demo-main">
+            <gwc-countdown
+                    id="interactiveCountdown"
+                    theme="default"
+                    label="Daily chest reset"
+                    description="Start, pause, reset or add time to test countdown events."
+                    duration="90"
+                    tone="gold"
+                    variant="card"
+                    show-days="false"
+                    show-labels="true"
+                    show-controls="true"
+                    complete-label="Chest ready"
+                    start-label="Start timer"
+                    pause-label="Pause"
+                    resume-label="Resume"
+                    reset-label="Reset">
+            </gwc-countdown>
+
+            <div class="demo-controls">
+                <button class="demo-button" id="addCountdownTime">Add 30 sec</button>
+                <button class="demo-button" id="shortCountdown">Set 10 sec</button>
+            </div>
+        </div>
+
+        <gwc-inspector-panel
+                id="countdownInspector"
+                variant="dark"
+                empty-text="Countdown events will appear here.">
+        </gwc-inspector-panel>
+    </div>
+
+    <div class="countdown-examples-title">Countdown examples</div>
+    <div class="countdown-examples-grid" id="countdownExamplesContainer"></div>
+
+    <div class="code-block">
+        // Usage in TypeScript<br>
+        import { GwcCountdown, CountdownConfig } from 'gwc';<br>
+        <br>
+        const countdown = document.querySelector('gwc-countdown');<br>
+        <br>
+        const config: CountdownConfig = {<br>
+        &nbsp;&nbsp;label: 'Daily reward',<br>
+        &nbsp;&nbsp;description: 'Next daily reward becomes available soon.',<br>
+        &nbsp;&nbsp;duration: 3600,<br>
+        &nbsp;&nbsp;tone: 'gold',<br>
+        &nbsp;&nbsp;variant: 'card',<br>
+        &nbsp;&nbsp;autoStart: true,<br>
+        &nbsp;&nbsp;completeLabel: 'Reward ready'<br>
+        };<br>
+        <br>
+        countdown?.setConfig(config);<br>
+        <br>
+        countdown?.addEventListener('gwc-countdown-complete', event =&gt; {<br>
+        });<br>
+        <br>
+        // Usage in HTML<br>
+        &lt;gwc-countdown<br>
+        &nbsp;&nbsp;theme="dark"<br>
+        &nbsp;&nbsp;label="Daily reward"<br>
+        &nbsp;&nbsp;duration="3600"<br>
+        &nbsp;&nbsp;tone="gold"<br>
+        &nbsp;&nbsp;auto-start="true"&gt;<br>
+        &lt;/gwc-countdown&gt;
+    </div>
+</div>

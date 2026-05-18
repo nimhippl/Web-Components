@@ -1,0 +1,114 @@
+{
+  "name": "gwc",
+  "version": "1.0.0",
+  "description": "Zero-dependency gamification web components library with TypeScript support - leaderboards, badges, rewards, tooltips, and game UI primitives",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run clean && tsc && node build.js",
+    "dev": "tsc --watch",
+    "test": "npm run typecheck",
+    "pack:check": "npm pack --dry-run",
+    "prepublishOnly": "npm run test && npm run build"
+  },
+  "keywords": [
+    "web-components",
+    "gamification",
+    "leaderboard",
+    "badges",
+    "achievements",
+    "emblem",
+    "custom-elements",
+    "typescript",
+    "zero-dependencies",
+    "themes",
+    "gaming",
+    "reward",
+    "reward-card",
+    "tooltip",
+    "game-ui",
+    "achievements"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./leaderboard": {
+      "types": "./dist/components/leaderboard.d.ts",
+      "import": "./dist/components/leaderboard.js"
+    },
+    "./badge": {
+      "types": "./dist/components/badge.d.ts",
+      "import": "./dist/components/badge.js"
+    },
+    "./reward-card": {
+      "types": "./dist/components/reward-card.d.ts",
+      "import": "./dist/components/reward-card.js"
+    },
+    "./tooltip": {
+      "types": "./dist/components/tooltip.d.ts",
+      "import": "./dist/components/tooltip.js"
+    },
+    "./emblem": {
+      "types": "./dist/components/emblem.d.ts",
+      "import": "./dist/components/emblem.js"
+    },
+    "./themes": {
+      "types": "./dist/utils/themes.d.ts",
+      "import": "./dist/utils/themes.js"
+    },
+    "./reward-reveal": {
+      "types": "./dist/components/reward-reveal.d.ts",
+      "import": "./dist/components/reward-reveal.js"
+    },
+    "./inspector-panel": {
+      "types": "./dist/components/inspector-panel.d.ts",
+      "import": "./dist/components/inspector-panel.js"
+    },
+    "./progress-bar": {
+      "types": "./dist/components/progress-bar.d.ts",
+      "import": "./dist/components/progress-bar.js"
+    },
+    "./stat-card": {
+      "types": "./dist/components/stat-card.d.ts",
+      "import": "./dist/components/stat-card.js"
+    },
+    "./player-card": {
+      "types": "./dist/components/player-card.d.ts",
+      "import": "./dist/components/player-card.js"
+    },
+    "./quest-list": {
+      "types": "./dist/components/quest-list.d.ts",
+      "import": "./dist/components/quest-list.js"
+    },
+    "./inventory-slot": {
+      "types": "./dist/components/inventory-slot.d.ts",
+      "import": "./dist/components/inventory-slot.js"
+    },
+    "./inventory-grid": {
+      "types": "./dist/components/inventory-grid.d.ts",
+      "import": "./dist/components/inventory-grid.js"
+    },
+    "./countdown": {
+      "types": "./dist/components/countdown.d.ts",
+      "import": "./dist/components/countdown.js"
+    }
+  }
+}

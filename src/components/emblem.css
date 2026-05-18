@@ -1,0 +1,305 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:host {
+  --gwc-primary: #6366f1;
+  --gwc-secondary: #8b5cf6;
+  --gwc-background: #ffffff;
+  --gwc-text: #1f2937;
+  --gwc-accent: #f59e0b;
+  --gwc-border: #e5e7eb;
+
+  --emblem-rarity-color: #9ca3af;
+  --emblem-shadow: rgba(0, 0, 0, 0.2);
+
+  display: inline-flex;
+  vertical-align: middle;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.emblem-container {
+  width: 82px;
+  height: 92px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: transform 0.22s ease, filter 0.22s ease, opacity 0.22s ease;
+}
+
+.emblem-container:disabled {
+  cursor: default;
+}
+
+.emblem-container:not(:disabled):hover,
+.emblem-container:not(:disabled):focus-visible {
+  transform: translateY(-3px) scale(1.06);
+  filter: brightness(1.08);
+  outline: none;
+}
+
+.emblem-icon {
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background:
+          linear-gradient(135deg, var(--gwc-primary) 0%, var(--gwc-secondary) 100%);
+  box-shadow: 0 8px 20px var(--emblem-shadow);
+  overflow: hidden;
+}
+
+.emblem-icon::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, transparent 55%);
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.emblem-icon-content {
+  position: relative;
+  z-index: 2;
+  font-size: 42px;
+  line-height: 1;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.28));
+}
+
+/* Shapes */
+.shape-shield .emblem-icon,
+.shape-shield .emblem-icon::before {
+  clip-path: polygon(50% 0%, 100% 15%, 100% 74%, 50% 100%, 0% 74%, 0% 15%);
+}
+
+.shape-circle {
+  width: 82px;
+  height: 82px;
+}
+
+.shape-circle .emblem-icon,
+.shape-circle .emblem-icon::before {
+  border-radius: 50%;
+}
+
+.shape-hex .emblem-icon,
+.shape-hex .emblem-icon::before {
+  clip-path: polygon(25% 4%, 75% 4%, 100% 50%, 75% 96%, 25% 96%, 0% 50%);
+}
+
+.shape-diamond {
+  width: 82px;
+  height: 82px;
+}
+
+.shape-diamond .emblem-icon,
+.shape-diamond .emblem-icon::before {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+/* States */
+.emblem-container.state-locked {
+  opacity: 0.58;
+  filter: grayscale(0.6);
+}
+
+.emblem-container.state-hidden {
+  opacity: 0.78;
+}
+
+.emblem-container.state-claimable .emblem-icon {
+  animation: emblemPulse 1.6s ease-in-out infinite;
+}
+
+.emblem-container.state-claimed .emblem-icon {
+  box-shadow:
+          0 8px 20px var(--emblem-shadow);
+}
+
+.emblem-container.selected .emblem-icon {
+  box-shadow:
+          0 0 0 4px color-mix(in srgb, var(--gwc-accent) 45%, transparent),
+          0 8px 20px var(--emblem-shadow);
+}
+
+.emblem-state-overlay {
+  position: absolute;
+  right: -3px;
+  bottom: 2px;
+  z-index: 2;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28);
+}
+
+.emblem-rarity-mark {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  z-index: 3;
+  width: 13px;
+  height: 13px;
+  border-radius: 999px;
+  background: var(--emblem-rarity-color);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.24);
+}
+
+.emblem-rarity-common {
+  opacity: 0.75;
+}
+
+.emblem-rarity-rare,
+.emblem-rarity-epic,
+.emblem-rarity-legendary {
+  opacity: 1;
+}
+
+.emblem-rarity-legendary {
+  box-shadow:
+          0 0 0 2px rgba(245, 158, 11, 0.25),
+          0 0 10px rgba(245, 158, 11, 0.65);
+}
+
+.emblem-state-claimable {
+  background: var(--emblem-rarity-color);
+}
+
+.emblem-state-claimed {
+  background: #16a34a;
+}
+
+.emblem-state-hidden,
+.emblem-state-locked {
+  background: #111827;
+}
+
+/* Rarity */
+.rarity-legendary .emblem-icon {
+  animation: legendaryGlow 2s ease-in-out infinite;
+}
+
+.rarity-legendary.state-claimable .emblem-icon {
+  animation: legendaryGlow 2s ease-in-out infinite, emblemPulse 1.6s ease-in-out infinite;
+}
+
+/* Sizes */
+.size-small {
+  width: 52px;
+  height: 58px;
+}
+
+.size-small.shape-circle,
+.size-small.shape-diamond {
+  width: 52px;
+  height: 52px;
+}
+
+.size-small .emblem-icon-content {
+  font-size: 26px;
+}
+
+.size-small .emblem-state-overlay {
+  min-width: 20px;
+  height: 20px;
+  font-size: 11px;
+  right: -2px;
+  bottom: 0;
+}
+
+.size-medium {
+  width: 82px;
+  height: 92px;
+}
+
+.size-medium.shape-circle,
+.size-medium.shape-diamond {
+  width: 82px;
+  height: 82px;
+}
+
+.size-large {
+  width: 120px;
+  height: 136px;
+}
+
+.size-large.shape-circle,
+.size-large.shape-diamond {
+  width: 120px;
+  height: 120px;
+}
+
+.size-large .emblem-icon-content {
+  font-size: 66px;
+}
+
+.size-large .emblem-state-overlay {
+  min-width: 34px;
+  height: 34px;
+  font-size: 18px;
+}
+
+.size-small .emblem-rarity-mark {
+  width: 10px;
+  height: 10px;
+  left: 2px;
+  top: 2px;
+  border-width: 1px;
+}
+
+.size-large .emblem-rarity-mark {
+  width: 16px;
+  height: 16px;
+  left: 6px;
+  top: 6px;
+}
+
+.empty {
+  opacity: 0.36;
+}
+
+.empty .emblem-icon {
+  background: var(--gwc-border);
+  color: var(--gwc-text);
+}
+
+@keyframes emblemPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes legendaryGlow {
+  0%, 100% {
+    filter: brightness(1) drop-shadow(0 0 7px color-mix(in srgb, var(--emblem-rarity-color) 55%, transparent));
+  }
+
+  50% {
+    filter: brightness(1.18) drop-shadow(0 0 15px color-mix(in srgb, var(--emblem-rarity-color) 78%, transparent));
+  }
+}

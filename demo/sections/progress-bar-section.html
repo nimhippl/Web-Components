@@ -1,0 +1,90 @@
+<div class="section">
+    <h2>📊 Progress Bar Component</h2>
+
+    <p class="section-description">
+        Game progress bars for XP, health, mana, stamina, quests, achievements, battle pass progress and segmented steps.
+    </p>
+
+    <div class="theme-selector">
+        <button class="theme-button active" data-theme="default" data-target="progress-bar">Default</button>
+        <button class="theme-button" data-theme="dark" data-target="progress-bar">Dark</button>
+        <button class="theme-button" data-theme="neon" data-target="progress-bar">Neon</button>
+        <button class="theme-button" data-theme="forest" data-target="progress-bar">Forest</button>
+        <button class="theme-button" data-theme="sunset" data-target="progress-bar">Sunset</button>
+        <button class="theme-button" data-theme="ocean" data-target="progress-bar">Ocean</button>
+    </div>
+
+    <div class="progress-demo-layout">
+        <div class="progress-demo-main">
+            <gwc-progress-bar
+                    id="interactiveProgress"
+                    theme="default"
+                    value="1250"
+                    max="2000"
+                    label="Interactive XP Progress"
+                    description="Use the controls below to update progress and trigger events."
+                    suffix="XP"
+                    tone="xp"
+                    variant="line"
+                    show-value="true"
+                    show-percent="true"
+                    animated="true"
+                    striped="true"
+                    completed-label="Level ready">
+            </gwc-progress-bar>
+
+            <div class="demo-controls">
+                <button class="demo-button" id="decreaseProgress">Decrease</button>
+                <button class="demo-button" id="increaseProgress">Increase</button>
+                <button class="demo-button" id="completeProgress">Complete</button>
+                <button class="demo-button" id="resetProgress">Reset</button>
+            </div>
+        </div>
+
+        <gwc-inspector-panel
+                id="progressEventPanel"
+                variant="dark"
+                empty-text="Progress events will appear here.">
+        </gwc-inspector-panel>
+    </div>
+
+    <div class="progress-examples-title">Progress examples</div>
+    <div class="progress-examples-grid" id="progressExamplesContainer"></div>
+
+    <div class="code-block">
+        // Usage in TypeScript<br>
+        import { GwcProgressBar, ProgressBarConfig } from 'gwc';<br>
+        <br>
+        const progress = document.querySelector('gwc-progress-bar');<br>
+        <br>
+        const config: ProgressBarConfig = {<br>
+        &nbsp;&nbsp;value: 7,<br>
+        &nbsp;&nbsp;max: 10,<br>
+        &nbsp;&nbsp;label: 'Quest Progress',<br>
+        &nbsp;&nbsp;suffix: 'wins',<br>
+        &nbsp;&nbsp;tone: 'success',<br>
+        &nbsp;&nbsp;variant: 'line',<br>
+        &nbsp;&nbsp;showValue: true,<br>
+        &nbsp;&nbsp;showPercent: true<br>
+        };<br>
+        <br>
+        progress?.setConfig(config);<br>
+        progress?.setProgress(10, 10);<br>
+        <br>
+        progress?.addEventListener('gwc-progress-complete', event =&gt; {<br>
+        });<br>
+        <br>
+        // Usage in HTML<br>
+        &lt;gwc-progress-bar<br>
+        &nbsp;&nbsp;theme="dark"<br>
+        &nbsp;&nbsp;value="7"<br>
+        &nbsp;&nbsp;max="10"<br>
+        &nbsp;&nbsp;label="Quest Progress"<br>
+        &nbsp;&nbsp;suffix="wins"<br>
+        &nbsp;&nbsp;tone="success"<br>
+        &nbsp;&nbsp;variant="line"<br>
+        &nbsp;&nbsp;show-value="true"<br>
+        &nbsp;&nbsp;show-percent="true"&gt;<br>
+        &lt;/gwc-progress-bar&gt;
+    </div>
+</div>

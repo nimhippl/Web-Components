@@ -1,0 +1,299 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:host {
+    --gwc-primary: #6366f1;
+    --gwc-secondary: #8b5cf6;
+    --gwc-background: #ffffff;
+    --gwc-text: #1f2937;
+    --gwc-accent: #f59e0b;
+    --gwc-border: #e5e7eb;
+
+    --reward-reveal-muted-text: color-mix(in srgb, var(--gwc-text) 68%, transparent);
+
+    display: block;
+    width: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.reward-reveal {
+    width: 100%;
+    padding: 22px;
+    background:
+            linear-gradient(135deg, color-mix(in srgb, var(--gwc-primary) 7%, var(--gwc-background)) 0%, var(--gwc-background) 62%);
+    color: var(--gwc-text);
+    border: 2px solid var(--gwc-border);
+    border-radius: 22px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16);
+    overflow: hidden;
+    position: relative;
+}
+
+.reward-reveal::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+            radial-gradient(circle at top right, color-mix(in srgb, var(--gwc-primary) 18%, transparent), transparent 35%),
+            radial-gradient(circle at bottom left, color-mix(in srgb, var(--gwc-secondary) 14%, transparent), transparent 40%);
+    pointer-events: none;
+}
+
+.reward-reveal > * {
+    position: relative;
+    z-index: 1;
+}
+
+.reward-reveal-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.reward-reveal-title {
+    color: var(--gwc-text);
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.reward-reveal-subtitle {
+    margin-top: 5px;
+    color: var(--reward-reveal-muted-text);
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+.reward-reveal-icon-button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--gwc-border);
+    border-radius: 999px;
+    background: var(--gwc-background);
+    color: var(--gwc-text);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.reward-reveal-empty,
+.reward-reveal-start {
+    min-height: 220px;
+    display: grid;
+    place-items: center;
+    gap: 12px;
+    text-align: center;
+    color: var(--reward-reveal-muted-text);
+}
+
+.reward-reveal-chest {
+    width: 112px;
+    height: 112px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, var(--gwc-primary) 0%, var(--gwc-secondary) 100%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 58px;
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+    animation: chestFloat 2.2s ease-in-out infinite;
+}
+
+.reward-reveal-count {
+    color: var(--gwc-text);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.reward-reveal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    margin: 18px 0;
+}
+
+.reward-reveal-item {
+    width: 100%;
+    min-width: 0;
+    padding: 14px;
+    border: 2px solid var(--gwc-border);
+    border-radius: 18px;
+    background: var(--gwc-background);
+    color: var(--gwc-text);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+    animation: rewardPop 0.32s ease both;
+}
+
+.reward-reveal-item:hover,
+.reward-reveal-item:focus-visible {
+    border-color: var(--gwc-primary);
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.reward-reveal-item-icon {
+    width: 54px;
+    height: 54px;
+    flex: 0 0 auto;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--gwc-primary) 0%, var(--gwc-secondary) 100%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.reward-reveal-item-content {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.reward-reveal-item-name {
+    color: var(--gwc-text);
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 1.25;
+}
+
+.reward-reveal-item-description {
+    color: var(--reward-reveal-muted-text);
+    font-size: 12px;
+    line-height: 1.35;
+}
+
+.reward-reveal-item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 3px;
+    color: var(--gwc-primary);
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.reward-reveal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.reward-reveal-button {
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 999px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.reward-reveal-button:hover,
+.reward-reveal-button:focus-visible {
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.reward-reveal-button.primary {
+    background: linear-gradient(135deg, var(--gwc-primary) 0%, var(--gwc-secondary) 100%);
+    color: #ffffff;
+}
+
+.reward-reveal-button.secondary {
+    background: color-mix(in srgb, var(--gwc-primary) 12%, var(--gwc-background));
+    color: var(--gwc-primary);
+}
+
+.variant-chest .reward-reveal-chest {
+    border-radius: 32px;
+}
+
+.variant-cards .reward-reveal-grid {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.variant-cards .reward-reveal-item {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.variant-cards .reward-reveal-item-icon {
+    width: 68px;
+    height: 68px;
+    font-size: 36px;
+}
+
+.rarity-common {
+    border-color: #9ca3af;
+}
+
+.rarity-rare {
+    border-color: #3b82f6;
+}
+
+.rarity-epic {
+    border-color: #a855f7;
+}
+
+.rarity-legendary {
+    border-color: #f59e0b;
+    box-shadow:
+            0 0 0 3px rgba(245, 158, 11, 0.12),
+            0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes chestFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+    }
+
+    50% {
+        transform: translateY(-6px) rotate(1deg);
+    }
+}
+
+@keyframes rewardPop {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 640px) {
+    .reward-reveal {
+        padding: 18px;
+    }
+
+    .reward-reveal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reward-reveal-actions {
+        justify-content: stretch;
+    }
+
+    .reward-reveal-button {
+        flex: 1;
+    }
+}

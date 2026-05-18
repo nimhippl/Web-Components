@@ -1,0 +1,74 @@
+<!-- Inventory Slot Section -->
+<div class="section">
+    <h2>🎒 Inventory Slot Component</h2>
+
+    <p class="section-description">
+        Single inventory cell states. Use this component inside custom inventories,
+        equipment panels, shops, loot previews, or through <code>gwc-inventory-grid</code>.
+    </p>
+
+    <div class="theme-selector">
+        <button class="theme-button active" data-theme="default" data-target="inventory-slot">Default</button>
+        <button class="theme-button" data-theme="dark" data-target="inventory-slot">Dark</button>
+        <button class="theme-button" data-theme="neon" data-target="inventory-slot">Neon</button>
+        <button class="theme-button" data-theme="forest" data-target="inventory-slot">Forest</button>
+        <button class="theme-button" data-theme="sunset" data-target="inventory-slot">Sunset</button>
+        <button class="theme-button" data-theme="ocean" data-target="inventory-slot">Ocean</button>
+    </div>
+
+    <div class="inventory-slot-demo-layout">
+        <div>
+            <div class="inventory-slot-grid" id="inventorySlotsContainer"></div>
+        </div>
+
+        <gwc-inspector-panel
+                id="inventorySlotInspector"
+                variant="dark"
+                empty-text="Click an inventory slot or action button to inspect event details.">
+        </gwc-inspector-panel>
+    </div>
+
+    <div class="code-block">
+        // Usage in TypeScript<br>
+        import { GwcInventorySlot, InventorySlotConfig } from 'gwc';<br>
+        <br>
+        const slot = document.querySelector('gwc-inventory-slot');<br>
+        <br>
+        const config: InventorySlotConfig = {<br>
+        &nbsp;&nbsp;slotId: 'weapon-1',<br>
+        &nbsp;&nbsp;state: 'filled',<br>
+        &nbsp;&nbsp;action: 'equip',<br>
+        &nbsp;&nbsp;item: {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;id: 'rare-sword',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;name: 'Rare Sword',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;icon: '⚔️',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;type: 'weapon',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;rarity: 'rare',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;quantity: 1,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;durability: 82,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;maxDurability: 100<br>
+        &nbsp;&nbsp;}<br>
+        };<br>
+        <br>
+        slot?.setConfig(config);<br>
+        <br>
+        slot?.addEventListener('gwc-inventory-slot-action', event =&gt; {<br>
+        &nbsp;&nbsp;// Your game updates inventory state here.<br>
+        });<br>
+        <br>
+        // Usage in HTML<br>
+        &lt;gwc-inventory-slot<br>
+        &nbsp;&nbsp;theme="dark"<br>
+        &nbsp;&nbsp;slot-id="weapon-1"<br>
+        &nbsp;&nbsp;name="Rare Sword"<br>
+        &nbsp;&nbsp;icon="⚔️"<br>
+        &nbsp;&nbsp;type="weapon"<br>
+        &nbsp;&nbsp;rarity="rare"<br>
+        &nbsp;&nbsp;state="filled"<br>
+        &nbsp;&nbsp;action="equip"<br>
+        &nbsp;&nbsp;quantity="1"<br>
+        &nbsp;&nbsp;durability="82"<br>
+        &nbsp;&nbsp;max-durability="100"&gt;<br>
+        &lt;/gwc-inventory-slot&gt;
+    </div>
+</div>

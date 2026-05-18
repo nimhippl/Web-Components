@@ -1,0 +1,83 @@
+<div class="section">
+    <h2>🏅 Badge Component</h2>
+
+    <div class="theme-selector">
+        <button class="theme-button active" data-theme="default" data-target="badge">Default</button>
+        <button class="theme-button" data-theme="dark" data-target="badge">Dark</button>
+        <button class="theme-button" data-theme="neon" data-target="badge">Neon</button>
+        <button class="theme-button" data-theme="forest" data-target="badge">Forest</button>
+        <button class="theme-button" data-theme="sunset" data-target="badge">Sunset</button>
+        <button class="theme-button" data-theme="ocean" data-target="badge">Ocean</button>
+    </div>
+
+    <div class="flow-demo">
+        <div class="flow-demo-header">
+            <div class="flow-demo-title">Badge reward flow</div>
+            <div class="flow-demo-description">
+                This example shows how a claimable achievement can be connected to a reward card.
+                Click “Claim reward” on the badge to mark both the badge and reward as claimed.
+            </div>
+        </div>
+
+        <div class="badge-reward-flow">
+            <div class="flow-column">
+                <div class="flow-label">Achievement</div>
+                <div id="claimableBadgeDemo"></div>
+            </div>
+
+            <div class="flow-arrow">→</div>
+
+            <div class="flow-column">
+                <div class="flow-label">Reward</div>
+                <div id="claimableRewardDemo"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="badge-states-title">Badge states gallery</div>
+
+    <div class="badges-grid" id="badgesContainer"></div>
+
+    <div class="code-block">
+        // Usage in TypeScript/JavaScript<br>
+        import { GwcBadge, GwcRewardCard } from 'gwc';<br>
+        <br>
+        const badge = document.querySelector('gwc-badge');<br>
+        const reward = document.querySelector('gwc-reward-card');<br>
+        <br>
+        const badgeConfig = {<br>
+        &nbsp;&nbsp;id: 1,<br>
+        &nbsp;&nbsp;name: 'Streak Master',<br>
+        &nbsp;&nbsp;description: 'Win 10 games in a row. Reward: 100 coins.',<br>
+        &nbsp;&nbsp;icon: '🔥',<br>
+        &nbsp;&nbsp;rarity: 'epic',<br>
+        &nbsp;&nbsp;state: 'claimable',<br>
+        &nbsp;&nbsp;progress: 10,<br>
+        &nbsp;&nbsp;maxProgress: 10<br>
+        };<br>
+        <br>
+        const rewardConfig = {<br>
+        &nbsp;&nbsp;id: 'coins-100',<br>
+        &nbsp;&nbsp;name: '100 Coins',<br>
+        &nbsp;&nbsp;description: 'Reward for completing the achievement.',<br>
+        &nbsp;&nbsp;icon: '🪙',<br>
+        &nbsp;&nbsp;type: 'coins',<br>
+        &nbsp;&nbsp;amount: 100,<br>
+        &nbsp;&nbsp;rarity: 'epic',<br>
+        &nbsp;&nbsp;state: 'claimable'<br>
+        };<br>
+        <br>
+        badge.setConfig(badgeConfig);<br>
+        reward.setConfig(rewardConfig);<br>
+        <br>
+        badge.addEventListener('gwc-badge-claim', () =&gt; {<br>
+        &nbsp;&nbsp;badgeConfig.state = 'claimed';<br>
+        &nbsp;&nbsp;badgeConfig.claimedAt = new Date();<br>
+        &nbsp;&nbsp;rewardConfig.state = 'claimed';<br>
+        &nbsp;&nbsp;rewardConfig.claimedAt = new Date();<br>
+        <br>
+        &nbsp;&nbsp;badge.setConfig(badgeConfig);<br>
+        &nbsp;&nbsp;reward.setConfig(rewardConfig);<br>
+        });<br>
+    </div>
+</div>

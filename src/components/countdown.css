@@ -1,0 +1,286 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:host {
+    --gwc-primary: #6366f1;
+    --gwc-secondary: #8b5cf6;
+    --gwc-background: #ffffff;
+    --gwc-text: #1f2937;
+    --gwc-accent: #f59e0b;
+    --gwc-border: #e5e7eb;
+
+    --countdown-tone-start: var(--gwc-primary);
+    --countdown-tone-end: var(--gwc-secondary);
+    --countdown-muted-text: color-mix(in srgb, var(--gwc-text) 64%, transparent);
+
+    display: block;
+    width: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.countdown {
+    width: 100%;
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid var(--gwc-border);
+    border-radius: 22px;
+    background:
+            radial-gradient(circle at top right, color-mix(in srgb, var(--gwc-primary) 16%, transparent), transparent 38%),
+            linear-gradient(135deg, color-mix(in srgb, var(--gwc-primary) 7%, var(--gwc-background)) 0%, var(--gwc-background) 72%);
+    color: var(--gwc-text);
+    box-shadow: 0 12px 28px rgba(17, 24, 39, 0.13);
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 5px;
+    background: linear-gradient(90deg, var(--countdown-tone-start), var(--countdown-tone-end));
+}
+
+.countdown-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.countdown-label {
+    color: var(--gwc-text);
+    font-size: 18px;
+    font-weight: 950;
+    line-height: 1.2;
+}
+
+.countdown-description {
+    margin-top: 5px;
+    color: var(--countdown-muted-text);
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.countdown-state {
+    flex: 0 0 auto;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--countdown-tone-start) 13%, var(--gwc-background));
+    color: var(--countdown-tone-start);
+    font-size: 11px;
+    font-weight: 950;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.countdown-time {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.countdown-unit {
+    min-width: 0;
+    padding: 12px 10px;
+    border-radius: 16px;
+    background: color-mix(in srgb, var(--gwc-primary) 9%, var(--gwc-background));
+    border: 1px solid color-mix(in srgb, var(--gwc-primary) 16%, var(--gwc-border));
+    text-align: center;
+}
+
+.countdown-value {
+    color: var(--gwc-text);
+    font-size: 28px;
+    font-weight: 950;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.countdown-unit-label {
+    margin-top: 6px;
+    color: var(--countdown-muted-text);
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.countdown-progress {
+    height: 9px;
+    margin-top: 16px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--gwc-border) 72%, transparent);
+    overflow: hidden;
+}
+
+.countdown-progress-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--countdown-tone-start), var(--countdown-tone-end));
+    transition: width 0.28s ease;
+}
+
+.countdown-complete {
+    margin-top: 12px;
+    color: var(--countdown-tone-start);
+    font-size: 13px;
+    font-weight: 950;
+}
+
+.countdown-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.countdown-button {
+    padding: 9px 14px;
+    border: 0;
+    border-radius: 999px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 950;
+    cursor: pointer;
+    transition: transform 0.18s ease, filter 0.18s ease, opacity 0.18s ease;
+}
+
+.countdown-button:hover,
+.countdown-button:focus-visible {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+    outline: none;
+}
+
+.countdown-button.primary {
+    background: linear-gradient(135deg, var(--gwc-primary), var(--gwc-secondary));
+    color: #ffffff;
+}
+
+.countdown-button.secondary {
+    background: linear-gradient(135deg, var(--countdown-tone-start), var(--countdown-tone-end));
+    color: #ffffff;
+}
+
+.countdown-button.ghost {
+    background: color-mix(in srgb, var(--gwc-primary) 10%, var(--gwc-background));
+    color: var(--gwc-primary);
+}
+
+/* States */
+.state-complete {
+    border-color: color-mix(in srgb, var(--countdown-tone-start) 56%, var(--gwc-border));
+}
+
+.state-paused {
+    opacity: 0.82;
+}
+
+/* Variants */
+.variant-compact {
+    padding: 14px;
+    border-radius: 18px;
+}
+
+.variant-compact .countdown-header {
+    margin-bottom: 12px;
+}
+
+.variant-compact .countdown-label {
+    font-size: 15px;
+}
+
+.variant-compact .countdown-description {
+    display: none;
+}
+
+.variant-compact .countdown-time {
+    gap: 7px;
+}
+
+.variant-compact .countdown-unit {
+    padding: 9px 7px;
+    border-radius: 13px;
+}
+
+.variant-compact .countdown-value {
+    font-size: 20px;
+}
+
+.variant-compact .countdown-unit-label {
+    font-size: 9px;
+}
+
+.variant-minimal {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.variant-minimal::before,
+.variant-minimal .countdown-progress,
+.variant-minimal .countdown-description,
+.variant-minimal .countdown-controls {
+    display: none;
+}
+
+.variant-minimal .countdown-time {
+    gap: 6px;
+}
+
+.variant-minimal .countdown-unit {
+    padding: 7px 8px;
+}
+
+/* Tones */
+.tone-neutral {
+    --countdown-tone-start: #6b7280;
+    --countdown-tone-end: #9ca3af;
+}
+
+.tone-xp {
+    --countdown-tone-start: var(--gwc-primary);
+    --countdown-tone-end: var(--gwc-secondary);
+}
+
+.tone-success {
+    --countdown-tone-start: #16a34a;
+    --countdown-tone-end: #22c55e;
+}
+
+.tone-warning {
+    --countdown-tone-start: #f59e0b;
+    --countdown-tone-end: #f97316;
+}
+
+.tone-danger {
+    --countdown-tone-start: #dc2626;
+    --countdown-tone-end: #ef4444;
+}
+
+.tone-gold {
+    --countdown-tone-start: #f59e0b;
+    --countdown-tone-end: #facc15;
+}
+
+@media (max-width: 640px) {
+    .countdown-header {
+        flex-direction: column;
+    }
+
+    .countdown-time {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .countdown-controls {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
